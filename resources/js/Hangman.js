@@ -37,6 +37,13 @@ class Hangman {
     // reset this.guesses to empty array
     // reset this.isOver to false
     // reset this.didWin to false
+    this.word = this.getRandomWord(difficulty);
+    this.clearCanvas();
+    this.drawBase();
+    this.guesses = [];
+    this.isOver = false;
+
+    
   }
 
   /**
@@ -114,4 +121,11 @@ class Hangman {
   drawLeftLeg() {}
 
   drawRightLeg() {}
+
+  next(callback) {
+    startWrapper.classList = `hidden`;
+    
+    
+  }
 }
+
