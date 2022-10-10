@@ -42,6 +42,7 @@ class Hangman {
     this.drawBase();
     this.guesses = [];
     this.isOver = false;
+    this.didWin = false;
     next();
     
   }
