@@ -47,6 +47,9 @@ class Hangman {
     
   }
 
+    wrongGuesses = 0;
+
+
   /**
    *
    * @param {string} letter the guessed letter.
@@ -79,12 +82,18 @@ class Hangman {
       this.checkWin();
     } else{
       this.onWrongGuess();
+      this.wrongGuesses++;
     }
   }
 
   checkWin() {
     // using the word and the guesses array, figure out how many remaining unknowns.
     // if zero, set both didWin, and isOver to true
+    let unknowns = (this.guesses.length + this.word.length)-26;
+    if (unknowns == 0) {
+      didWin = true;
+      isOver = true;
+    } 
   }
 
   /**
@@ -92,7 +101,29 @@ class Hangman {
    * drawHead, drawBody, drawRightArm, drawLeftArm, drawRightLeg, or drawLeftLeg.
    * if the number wrong guesses is 6, then also set isOver to true and didWin to false.
    */
-  onWrongGuess() {}
+  onWrongGuess() {
+    if (this.wrongGuesses == 1) {
+      this.drawHead();
+    }
+    else if (this.wrongGuesses == 2) {
+      this.drawBody();
+    }
+    else if (this.wrongGuesses == 3) {
+      this.drawRightArm();
+    }
+    else if (this.wrongGuesses == 4) {
+      this.drawLeftArm();
+    }
+    else if (this.wrongGuesses == 5) {
+      this.drawRightLeg();
+    }
+    else if (this.wrongGuesses == 6) {
+      this.drawLeftLeg();
+      this.isOver = true;
+      this.didWin = false;
+    }
+    
+  }
 
   /**
    * This function will return a string of the word placeholder
@@ -100,6 +131,14 @@ class Hangman {
    * i.e.: if the word is BOOK, and the letter O has been guessed, this would return _ O O _
    */
   getWordHolderText() {
+    let contains;
+    if (this.word.contains(letter)) {
+      contains = true;
+    } 
+    else {contains = false;}
+    if (contains = true) {
+      
+    }
     return;
   }
 
