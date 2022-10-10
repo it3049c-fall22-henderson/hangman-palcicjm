@@ -42,7 +42,7 @@ class Hangman {
     this.drawBase();
     this.guesses = [];
     this.isOver = false;
-
+    next();
     
   }
 
@@ -122,10 +122,11 @@ class Hangman {
 
   drawRightLeg() {}
 
-  next(callback) {
+  next() {
     startWrapper.classList = `hidden`;
-    
-    
+    gameWrapper.classList = ``;
+    game.getWordHolderText() = wordHolderText;
+    game.getGuessesText() = guessesText;
   }
 }
 
