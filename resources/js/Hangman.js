@@ -61,6 +61,25 @@ class Hangman {
     // check if the word includes the guessed letter:
     //    if it's is call checkWin()
     //    if it's not call onWrongGuess()
+    if (letter == "") {
+      throw new Error(`Please enter a letter`);
+    }
+    if (typeof letter == "number" || typeof letter == "symbol") {
+      throw new Error(`Enter a letter.`);
+    }
+    if (letter.length > 1) {
+      throw new Error(`Enter only one letter.`);
+    }
+    letter = letter.toLowerCase();
+    if (this.guesses.includes(letter)) {
+      throw new Error(`You've already guessed this letter.`);
+    }
+    this.guesses.append(letter);
+    if (this.word.includes(letter)) {
+      this.checkWin();
+    } else{
+      this.onWrongGuess();
+    }
   }
 
   checkWin() {
