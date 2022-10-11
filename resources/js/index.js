@@ -49,8 +49,7 @@ try {
   //      2. disable the guessButton
   //      3. show the resetGame button
   // if the game is won or lost, show an alert.
-  guessForm.addEventListener(`submit`, function (e) {});
-    e.preventDefault();
+  guessForm.addEventListener(`submit`, function (e) { e.preventDefault();
     letter = guessInput;
     game.guess();
     wordHolderText = game.getHolderText();
@@ -65,7 +64,8 @@ try {
       } else {
         alert("You Lost!")
       }
-    }
+    }});
+    
   // add a click Event Listener to the resetGame button 
   //    show the startWrapper
   //    hide the gameWrapper

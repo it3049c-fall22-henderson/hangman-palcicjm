@@ -171,15 +171,27 @@ class Hangman {
 
   drawHead() {}
 
-  drawBody() {}
+  drawBody() {
+    this.ctx.fillRect(95, 60, 10, 75);
+  }
 
-  drawLeftArm() {}
+  drawLeftArm() {
+    this.ctx.lineTo(10, 3);
+  }
 
-  drawRightArm() {}
+  drawRightArm() {
+    this.ctx.lineTo(10, 410, 175, 10);
+  }
 
-  drawLeftLeg() {}
+  drawLeftLeg() {
+    this.ctx.lineTo(10, 410, 175, 10);
+  }
 
-  drawRightLeg() {}
+  drawRightLeg() {
+    this.ctx.lineTo(10, 410, 175, 10);
+  }
+
+  drawBase();
 
   next() {
     startWrapper.classList = `hidden`;
