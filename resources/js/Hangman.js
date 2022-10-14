@@ -226,7 +226,7 @@ class Hangman {
    */
   async start(difficulty, next) {
     // get word and set it to the class's this.word
-    this.word  = await this.getRandomWord(difficulty)
+    this.word  = await this.getRandomWord(difficulty)         //  this uses an await to wait for getRandomWord to get a word 
     // clear canvas
     this.clearCanvas();
     // draw base
@@ -249,7 +249,7 @@ class Hangman {
       alert("Please guess a letter.");
       throw new Error ("Please guess a letter.");
     }// Check for invalid cases (numbers, symbols, ...) throw an error if it is
-    if (/^[a-zA-Z]+$/.test(letter) === false){
+    if (/^[a-zA-Z]+$/.test(letter) === false){             // tests to see if the input is not a letter
       alert("Please guess only a letter.");
       throw new Error("Please guess only a letter.");
     }// Check if more than one letter was provided. throw an error if it is.
@@ -260,7 +260,7 @@ class Hangman {
     letter = letter.toLowerCase();
     // check if this.guesses includes the letter. Throw an error if it has been guessed already.
     let hasLetter = false;
-    for (let i = 0; i < this.guesses.length; i++){
+    for (let i = 0; i < this.guesses.length; i++){   // goes through each guess and checks to see if it's already been guessed using a for loop
       if (this.guesses[i] === letter){
         hasLetter = true;
         alert("That letter has already been guessed. Try Again.");
@@ -270,11 +270,11 @@ class Hangman {
     // add the new letter to the guesses array.
     // check if the word includes the guessed letter:
     if(hasLetter === false){
-      this.guesses.push(letter)
+      this.guesses.push(letter)        // appends the array of guesses with the letter if it's not in the word
     }
     //    if it's is call checkWin()
     //    if it's not call onWrongGuess()
-    if(this.word.indexOf(letter) > -1){
+    if(this.word.indexOf(letter) > -1){         // checkWin runs if the letter exists in the array
       this.checkWin();
     }else{
       this.onWrongGuess();
@@ -283,15 +283,15 @@ class Hangman {
   checkWin() {
     // using the word and the guesses array, figure out how many remaining unknowns.
     // if zero, set both didWin, and isOver to true
-    let unknowns = this.word.length;
-    for (let i = 0; i < this.guesses.length; i++){
-      for(let j = 0; j < this.word.length; j++){
-        if (this.word.charAt(j) == this.guesses[i]){
+    let unknowns = this.word.length;                    // sets the variable unknowns to the length of the word
+    for (let i = 0; i < this.guesses.length; i++){      // a for loop that runs for the length of the guesses array
+      for(let j = 0; j < this.word.length; j++){         // a for loop that runs for the length of the word
+        if (this.word.charAt(j) == this.guesses[i]){      // using charAt at a certain interval, either j or i within the word or array, then take 1 off of the value of word.length
           unknowns--;
         }
       }
     }
-    if (unknowns === 0){
+    if (unknowns === 0){   // this process goes until it hits 0 and the game is over and the player has won.
       this.isOver = true;
       this.didWin = true;
     }
@@ -302,7 +302,7 @@ class Hangman {
    * if the number wrong guesses is 6, then also set isOver to true and didWin to false.
    */
   onWrongGuess() {
-    switch(this.wrongGuesses){
+    switch(this.wrongGuesses){         // using a switch and the value of which wrong guess it is, the methods are called for drawing the hangman                // wrongGuesses was already 0 so if onWrongGuess() is called it will draw the head.
       case(0):
         this.drawHead();
         break;
@@ -325,7 +325,7 @@ class Hangman {
         this.isOver = true;
         break;
     }
-    this.wrongGuesses++;
+    this.wrongGuesses++;         // every time onWrongGuess() is called 1 is added to it at the end of checking the value for next time. 
   }
   /**
    * This function will return a string of the word placeholder
@@ -334,19 +334,19 @@ class Hangman {
    */
   getWordHolderText() {
     let strPlaceHolder = "Word: ";
-    let strWord = this.word.split("");
-    for (let i = 0; i < strWord.length; i++){
-      strWord[i] = "_";
-    }
-    console.log(this.word);
-    for (let i = 0; i < this.guesses.length; i++) {
-      for (let j = 0; j < this.word.length; j++) {
-        if (this.word.charAt(j) === this.guesses[i]) {
-          strWord[j] = this.guesses[i];
+    let strWord = this.word.split("");           // turns the word into an array and places it inside strWord
+    for (let i = 0; i < strWord.length; i++){      
+      strWord[i] = "_";                           // makes all the letters in strWord = "_"
+    } 
+    console.log(this.word);                           // logs the word
+    for (let i = 0; i < this.guesses.length; i++) {            // iterates a for loop for the guesses array length
+      for (let j = 0; j < this.word.length; j++) {             // iterates a for loop for the word length
+        if (this.word.charAt(j) === this.guesses[i]) {         // if the word has the letter at the j index and if it's inside 
+          strWord[j] = this.guesses[i];                        // guesses, then change the strWord to show the letter as right
         }
       }
     }
-    strPlaceHolder += strWord.join(" ");
+    strPlaceHolder += strWord.join(" ");          // will return "Word: " + the string of the current word and correct guesses
     return strPlaceHolder;
   }
   /**
@@ -357,7 +357,7 @@ class Hangman {
    */
   getGuessesText() {
     let allGuesses = "Guesses: ";
-    allGuesses += this.guesses.join(", ");
+    allGuesses += this.guesses.join(", ");      // shows the guesses by turning it into a string and returns it
     return allGuesses;
   }
   /**
@@ -377,7 +377,7 @@ class Hangman {
   }
   drawHead() {
     this.ctx.beginPath();
-    this.ctx.arc(250, 85, 25, 0, 2 * Math.PI, true);
+    this.ctx.arc(250, 85, 25, 0, 2 * Math.PI, true);         // uses arc to make a circle
     this.ctx.stroke();
   }
   drawBody() {
