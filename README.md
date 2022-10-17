@@ -18,3 +18,6 @@ I think I deserve a 16/20 since I turned it in late. Otherwise, the program runs
 I understood a decent part of the assignment but found myself clueless as to what to do with certain functions.
 ### How long it took me to finish this?
 It took a few hours in total to complete this. 
+
+
+Note: Added geolocation function js is written in the index.html file, not index.js
